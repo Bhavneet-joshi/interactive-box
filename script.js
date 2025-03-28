@@ -3,9 +3,9 @@ const PRODUCT_CONFIG = {
   options: [
     {
       id: 1,
-      units: 1,
+      units: 2,
       discount: 10,
-      originalPrice: 24.00,
+      originalPrice: 48.00,
       discountedPrice: 10.00,
       isPopular: false
     },
@@ -19,9 +19,9 @@ const PRODUCT_CONFIG = {
     },
     {
       id: 3,
-      units: 1,
+      units: 2,
       discount: 30,
-      originalPrice: 24.00,
+      originalPrice: 48.00,
       discountedPrice: 24.00,
       isPopular: false
     }

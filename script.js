@@ -19,9 +19,9 @@ const PRODUCT_CONFIG = {
     },
     {
       id: 3,
-      units: 2,
+      units: 1,
       discount: 30,
-      originalPrice: 48.00,
+      originalPrice: 24.00,
       discountedPrice: 24.00,
       isPopular: false
     }

@@ -13,7 +13,7 @@ const PRODUCT_CONFIG = {
       id: 2,
       units: 2,
       discount: 20,
-      originalPrice: 24.00,
+      originalPrice: 48.00,
       discountedPrice: 18.00,
       isPopular: true
     },
@@ -21,7 +21,7 @@ const PRODUCT_CONFIG = {
       id: 3,
       units: 3,
       discount: 30,
-      originalPrice: 24.00,
+      originalPrice: 72.00,
       discountedPrice: 24.00,
       isPopular: false
     }
@@ -91,6 +91,12 @@ const handlers = {
       state.selectedOption = optionId;
       this.updateOptionSelection(optionId);
       utils.updateTotalAmount(optionId);
+      
+      // Update radio button state
+      const radio = document.getElementById(`option${optionId}`);
+      if (radio) {
+        radio.checked = true;
+      }
     } catch (error) {
       console.error('Option box click error:', error);
       utils.showMessage('Failed to process option selection', 'error');
@@ -157,6 +163,7 @@ function init() {
 
     // Set initial state
     DOM.optionBoxes[0].classList.add('active');
+    document.getElementById('option1').checked = true;
     
     // Add event listeners
     DOM.optionBoxes.forEach(box => {

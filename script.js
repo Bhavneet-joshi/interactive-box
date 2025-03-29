@@ -1,4 +1,4 @@
-// Product configuration
+// Product configuration - BOGO deals
 const PRODUCT_CONFIG = {
   options: [
     {
@@ -15,7 +15,7 @@ const PRODUCT_CONFIG = {
       discount: 20,
       originalPrice: 48.00,
       discountedPrice: 18.00,
-      isPopular: true
+      isPopular: true  // Best value for money!
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ const PRODUCT_CONFIG = {
   ]
 };
 
-// DOM Elements
+// DOM Elements - cache for better performance
 const DOM = {
   optionBoxes: document.querySelectorAll('.option-box'),
   radioInputs: document.querySelectorAll('.radio-input'),
@@ -36,19 +36,21 @@ const DOM = {
   addToCartBtn: document.getElementById('add-to-cart')
 };
 
-// State management
+// State management - keep track of user selection
 let state = {
-  selectedOption: 1
+  selectedOption: 1  // Default to first option
 };
 
-// Utility functions
+// Utility functions - helper methods
 const utils = {
+  // Update the total amount displayed
   updateTotalAmount(optionId) {
     const option = PRODUCT_CONFIG.options.find(opt => opt.id === optionId);
     if (!option) return;
     DOM.totalAmount.textContent = `$${option.discountedPrice.toFixed(2)} USD`;
   },
 
+  // Show success/error messages to user
   showMessage(message, type = 'success') {
     const messageEl = document.createElement('div');
     messageEl.className = 'success-message';
@@ -58,6 +60,7 @@ const utils = {
     setTimeout(() => messageEl.remove(), 3000);
   },
 
+  // Get all selected items for the current option
   getSelectedItems(optionId) {
     const option = PRODUCT_CONFIG.options.find(opt => opt.id === optionId);
     if (!option) return [];
@@ -79,8 +82,9 @@ const utils = {
   }
 };
 
-// Event handlers
+// Event handlers - user interaction handlers
 const handlers = {
+  // Handle option box click
   handleOptionBoxClick(event) {
     try {
       const optionBox = event.currentTarget;
@@ -103,6 +107,7 @@ const handlers = {
     }
   },
 
+  // Handle radio button change
   handleRadioChange(event) {
     try {
       const radio = event.target;
@@ -119,6 +124,7 @@ const handlers = {
     }
   },
 
+  // Handle add to cart button click
   handleAddToCart() {
     try {
       const option = PRODUCT_CONFIG.options.find(opt => opt.id === state.selectedOption);
@@ -136,13 +142,14 @@ const handlers = {
       };
       
       console.log('Added to cart:', cartItem);
-      utils.showMessage('Added to cart successfully!');
+      utils.showMessage('Added to cart successfully! 🎉');
     } catch (error) {
       console.error('Add to cart error:', error);
       utils.showMessage('Failed to add items to cart', 'error');
     }
   },
 
+  // Update visual selection state
   updateOptionSelection(optionId) {
     DOM.optionBoxes.forEach(box => {
       const isSelected = parseInt(box.dataset.option) === optionId;
@@ -153,10 +160,10 @@ const handlers = {
   }
 };
 
-// Initialize the component
+// Initialize the component when DOM is loaded
 function init() {
   try {
-    // Validate DOM elements
+    // Validate required DOM elements
     if (!DOM.optionBoxes.length || !DOM.radioInputs.length || !DOM.totalAmount || !DOM.addToCartBtn) {
       throw new Error('Required DOM elements not found');
     }
@@ -199,5 +206,5 @@ function init() {
   }
 }
 
-// Initialize when DOM is loaded
+// Start the app when DOM is ready
 document.addEventListener('DOMContentLoaded', init);
